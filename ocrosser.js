@@ -13,6 +13,34 @@ let y = 444;
 let width = 30;
 let height = 30;
 
+let rightPressed = false;
+let leftPressed = false;
+let upPressed = false;
+let downPressed = false;
+
+let up = true ;
+let down = true;
+let right = true;
+let left = true;
+
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
+function keyDownHandler(e) {
+  if (e.keyCode == 39) rightPressed = true;
+  if (e.keyCode == 37) leftPressed = true;
+  if (e.keyCode == 38) upPressed = true;
+  if (e.keyCode == 40) downPressed = true;
+}
+
+function keyUpHandler(e){
+  if(e.keyCode == 39) {rightPressed = false;}
+  if(e.keyCode == 37) {leftPressed = false; }
+  if (e.keyCode == 38) {upPressed = false;}
+  if (e.keyCode == 40 ) {downPressed = false;}
+}
+
+
 function drawBackground(){
 
   ctx.fillStyle = "lime" ;
@@ -55,8 +83,19 @@ function drawOCrosser(){
 }
 
 function draw(){
+  ctx.clearRect(0,0, canvas.width, canvas.height);
   drawBackground();
   drawOCrosser();
+
+  if (upPressed === true && up === true) {
+    y = y - 44;
+    up = false;
+  }
+
+  if(upPressed === false){
+    up = true;
+  }
+
   requestAnimationFrame(draw);
 }
 
