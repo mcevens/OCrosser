@@ -4,14 +4,37 @@ let ctx = canvas.getContext('2d');
 let ocrosser = new Image();
 ocrosser.src = "ocrosser.png";
 
-let sx = 0 ;
-let sy = 0 ;
-let swidth = 40;
-let sheight = 40;
-let x = 50;
-let y = 444;
-let width = 30;
-let height = 30;
+let templateWidth = 1142;
+let templateHeight = 635;
+let templateRow = 4;
+let templateCol = 12;
+
+let actorWidth = templateWidth / templateCol;
+let actorHeight = templateHeight / templateRow;
+
+let actorUnitXPos = 0;
+let actorUnitYPos = templateHeight - actorHeight;
+
+let actorDInitXPos = 0 ;
+let actorDInitYPos = 0 ;
+
+let actorRInitXPos = 0 ;
+let actorRInitYPos =  templateHeight - 2 * actorHeight;
+
+let actorLInitXPos = 0 ;
+let actorLInitYPos = templateHeight - 3 * actorHeight ;
+
+let sx = actorUnitXPos ;
+let sy = actorUnitYPos ;
+
+
+
+let swidth = actorWidth;
+let sheight = actorHeight;
+let x = 50; //Image position in canvas
+let y = 444; //Image Position in canvas
+let width = 50;
+let height = 50;
 
 let rightPressed = false;
 let leftPressed = false;
@@ -87,13 +110,53 @@ function draw(){
   drawBackground();
   drawOCrosser();
 
+  //Steps
+  // 1 need the width of the image
+  // when i pressed on the up I wanna move forward
+  // get initial position
+
   if (upPressed === true && up === true) {
     y = y - 44;
     up = false;
+    sx= actorUnitXPos;
+    sy= actorUnitYPos;
   }
 
   if(upPressed === false){
     up = true;
+  }
+
+  if (downPressed === true && down === true) {
+    y = y + 44;
+    down = false;
+    sx = actorDInitXPos;
+    sy = actorDInitYPos;
+  }
+
+  if(downPressed === false){
+    down = true;
+  }
+
+  if (rightPressed === true && right === true){
+    x = x + 44 ;
+    right = false;
+    sx = actorRInitXPos;
+    sy = actorRInitYPos;
+  }
+
+  if (rightPressed === false){
+    right = true;
+  }
+
+  if (leftPressed === true && left === true){
+    x = x - 44 ;
+    left = false;
+    sx = actorLInitXPos;
+    sy = actorLInitYPos;
+  }
+
+  if (leftPressed === false){
+    left = true;
   }
 
   requestAnimationFrame(draw);
