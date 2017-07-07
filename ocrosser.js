@@ -4,12 +4,12 @@ let ctx = canvas.getContext('2d');
 let ocrosser = new Image();
 ocrosser.src = "ocrosser.png";
 
-let car = new Image();
-car.src = "ocrosserCars2.png";
-
+let car = new Image();car.src = "ocrosserCars2.png";
 let carX1 = 100;
 let carSX1 = 0;
-
+let carY1 = 400;
+let carWidth = 60;
+let carHeight = 35;
 
 
 let templateWidth = 1142;
@@ -34,10 +34,6 @@ let actorLInitYPos = templateHeight - 3 * actorHeight ;
 
 let sx = actorUnitXPos ;
 let sy = actorUnitYPos ;
-
-
-
-
 
 let swidth = actorWidth;
 let sheight = actorHeight;
@@ -180,7 +176,7 @@ function draw(){
 }
 
 function drawCars(){
-  ctx.drawImage(car,carSX1,0,60,35,carX1,400,68,35);
+  ctx.drawImage(car,carSX1,0,60,35,carX1,carY1,carWidth,carHeight);
 
   if (carX1 < canvas.width + 100) {
       carX1 = carX1 + 5;
