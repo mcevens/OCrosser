@@ -4,6 +4,9 @@ let ctx = canvas.getContext('2d');
 let ocrosser = new Image();
 ocrosser.src = "ocrosser.png";
 
+let car = new Image();
+car.src = "ocrosserCars2.png";
+
 let templateWidth = 1142;
 let templateHeight = 635;
 let templateRow = 4;
@@ -26,6 +29,8 @@ let actorLInitYPos = templateHeight - 3 * actorHeight ;
 
 let sx = actorUnitXPos ;
 let sy = actorUnitYPos ;
+
+
 
 
 
@@ -105,16 +110,7 @@ function drawOCrosser(){
   ctx.drawImage(ocrosser, sx, sy, swidth, sheight, x, y, width, height);
 }
 
-function draw(){
-  ctx.clearRect(0,0, canvas.width, canvas.height);
-  drawBackground();
-  drawOCrosser();
-
-  //Steps
-  // 1 need the width of the image
-  // when i pressed on the up I wanna move forward
-  // get initial position
-
+function moveOCrosser() {
   if (upPressed === true && up === true) {
     y = y - 44;
     up = false;
@@ -158,8 +154,19 @@ function draw(){
   if (leftPressed === false){
     left = true;
   }
+}
 
+function draw(){
+  ctx.clearRect(0,0, canvas.width, canvas.height);
+  drawBackground();
+  drawOCrosser();
+  moveOCrosser();
+  drawCars();
   requestAnimationFrame(draw);
+}
+
+function drawCars(){
+  ctx.drawImage(car,0,0,60,35,100,400,68,35);
 }
 
 draw();
