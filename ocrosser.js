@@ -7,6 +7,11 @@ ocrosser.src = "ocrosser.png";
 let car = new Image();
 car.src = "ocrosserCars2.png";
 
+let carX1 = 100;
+let carSX1 = 0;
+
+
+
 let templateWidth = 1142;
 let templateHeight = 635;
 let templateRow = 4;
@@ -111,7 +116,7 @@ function drawOCrosser(){
 }
 
 function moveOCrosser() {
-  if (upPressed === true && up === true) {
+  if (upPressed === true && up === true && y > 20) {
     y = y - 44;
     up = false;
     sx= actorUnitXPos;
@@ -122,7 +127,10 @@ function moveOCrosser() {
     up = true;
   }
 
-  if (downPressed === true && down === true) {
+  if (downPressed === true
+    && down === true
+    && y + height < canvas.height - 80) {
+
     y = y + 44;
     down = false;
     sx = actorDInitXPos;
@@ -133,7 +141,10 @@ function moveOCrosser() {
     down = true;
   }
 
-  if (rightPressed === true && right === true){
+  if (rightPressed === true
+    && right === true
+    && x + width < canvas.width - 20
+    ){
     x = x + 44 ;
     right = false;
     sx = actorRInitXPos;
@@ -144,7 +155,10 @@ function moveOCrosser() {
     right = true;
   }
 
-  if (leftPressed === true && left === true){
+  if (leftPressed === true
+    && left === true
+    && x > 20
+    ){
     x = x - 44 ;
     left = false;
     sx = actorLInitXPos;
@@ -166,7 +180,14 @@ function draw(){
 }
 
 function drawCars(){
-  ctx.drawImage(car,0,0,60,35,100,400,68,35);
+  ctx.drawImage(car,carSX1,0,60,35,carX1,400,68,35);
+
+  if (carX1 < canvas.width + 100) {
+      carX1 = carX1 + 5;
+  }else {
+    carX1 = -100;
+    carSX1 = (Math.floor(Math.random() * 4)) * 60;
+  }
 }
 
 draw();
