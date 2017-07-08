@@ -14,6 +14,7 @@ let carX2 = 500;
 let carSX2 = 60;
 let carY2 = 400;
 
+
 let templateWidth = 1142;
 let templateHeight = 635;
 let templateRow = 4;
@@ -180,7 +181,14 @@ function draw(){
 }
 
 function drawCars(){
-  ctx.drawImage(car,carSX1,0,60,35,carX1,carY1,carWidth,carHeight);
+
+  let carsSX = [carSX1, carSX2];
+  let carsX = [carX1, carX2];
+  let carsY = [carY1, carY2];
+
+  for (let i = 0; i < carsX.length; i++) {
+    ctx.drawImage(car,carsSX[i],0,60,35,carsX[i],carsY[i],carWidth,carHeight);
+  }
 
   if (carX1 < canvas.width + 100) {
       carX1 = carX1 + 5;
