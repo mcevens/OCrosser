@@ -42,6 +42,16 @@ let logHeight = 30;
 let logX2 = 40;
 let logY2 = 180;
 
+let logX3 = 100;
+let logY3 = 136;
+
+let logX4 = 400;
+let logY4 = 136;
+let logX5 = 480;
+let logY5 = 92;
+let logX6 = 60;
+let logY6 = 92;
+
 let templateWidth = 1142;
 let templateHeight = 635;
 let templateRow = 4;
@@ -221,23 +231,83 @@ function moveLogs(){
   }else {
     logX2 = -100;
   }
-}
-
-function float(){
-  if(y < 220){
-    if (logX1 <= x + width &&
-      logX1 + logWidth >= x &&
-      logY1 + logHeight >= y &&
-      logY1 <= y + height){
-        if(x < canvas.width - 30){
-          x = x +2;
-        }
-      }else{
-        y = 488;
-      }
+  if (logX3 > 0 - logWidth){
+    logX3 = logX3 - 2;
+  }else {
+    logX3 = canvas.width + 100;
+  }
+  if (logX4 > 0 - logWidth){
+    logX4 = logX4 - 2;
+  }else {
+    logX4 = canvas.width + 100;
+  }
+  if (logX5 < canvas.width + 100){
+    logX5 = logX5 +3;
+  }else {
+    logX5 = -100;
+  }
+  if (logX6 < canvas.width + 100){
+    logX6 = logX6 +3;
+  }else {
+    logX6 = -100;
   }
 }
 
+function float(){
+
+  if (logX1 <= x + width &&
+    logX1 + logWidth >= x &&
+    logY1 + logHeight >= y &&
+    logY1 <= y + height){
+      if(x < canvas.width - 30){
+        x = x +2;
+      }
+    }
+    else if(logX2 <= x + width &&
+      logX2 + logWidth >= x &&
+      logY2 + logHeight >= y &&
+      logY2 <= y + height){
+        if(x < canvas.width - 30){
+          x = x +2;
+        }
+    }
+    else if(logX3 <= x + width &&
+      logX3 + logWidth >= x &&
+      logY3 + logHeight >= y &&
+      logY3 <= y + height){
+        if(x > 0 ){
+          x = x -2;
+        }
+    }
+    else if(logX4 <= x + width &&
+      logX4 + logWidth >= x &&
+      logY4 + logHeight >= y &&
+      logY4 <= y + height){
+        if(x > 0 ){
+          x = x -2;
+        }
+    }
+    else if(logX5 <= x + width &&
+      logX5 + logWidth >= x &&
+      logY5 + logHeight >= y &&
+      logY5 <= y + height){
+        if(x < canvas.width - 30 ){
+          x = x + 3;
+        }
+    }
+    else if(logX6 <= x + width &&
+      logX6 + logWidth >= x &&
+      logY6 + logHeight >= y &&
+      logY6 <= y + height){
+        if(x < canvas.width - 30 ){
+          x = x + 3;
+        }
+    }
+
+    else if(y < 220){
+        y = 488;
+      }
+    }
 function drawCars(){
 
   let carsSX = [carSX1, carSX2, carSX3, carSX4, carSX5,carSX6, carSX7, carSX8];
@@ -326,8 +396,8 @@ function runOver(){
 
  function drawLogs(){
    ctx.fillStyle = "tan";
-   var logsX = [logX1, logX2];
-   var logsY = [logY1, logY2];
+   var logsX = [logX1, logX2, logX3, logX4, logX5, logX6];
+   var logsY = [logY1, logY2, logY3, logY4, logY5, logY6];
 
    for (let i = 0; i < logsX.length; i++) {
      ctx.fillRect(logsX[i], logsY[i], logWidth, logHeight);
