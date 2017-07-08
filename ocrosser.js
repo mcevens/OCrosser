@@ -13,7 +13,26 @@ let carHeight = 35;
 let carX2 = 500;
 let carSX2 = 60;
 let carY2 = 400;
+let carX3 = 460;
+let carSX3 = 120;
+let carY3 = 355;
 
+let carX4 = 400;
+let carSX4 = 160;
+let carY4 = 310;
+let carX5 = 360;
+let carSX5 = 6;
+let carY5 = 265;
+
+let carX6 = 60;
+let carSX6 = 120;
+let carY6 = 355;
+let carX7 = 100;
+let carSX7 = 180;
+let carY7 =310;
+let carX8 = 160;
+let carSX8 = 0;
+let carY8 = 265;
 
 let templateWidth = 1142;
 let templateHeight = 635;
@@ -176,41 +195,84 @@ function draw(){
   moveOCrosser();
   drawCars();
   runOver();
-
+  moveCars();
   requestAnimationFrame(draw);
 }
 
 function drawCars(){
 
-  let carsSX = [carSX1, carSX2];
-  let carsX = [carX1, carX2];
-  let carsY = [carY1, carY2];
+  let carsSX = [carSX1, carSX2, carSX3, carSX4, carSX5,carSX6, carSX7, carSX8];
+  let carsX = [carX1, carX2, carX3, carX4, carX5, carX6, carX7, carX8];
+  let carsY = [carY1, carY2, carY3, carY4, carY5, carY6, carY7, carY8];
 
   for (let i = 0; i < carsX.length; i++) {
     ctx.drawImage(car,carsSX[i],0,60,35,carsX[i],carsY[i],carWidth,carHeight);
   }
 
+
+}
+
+function moveCars(){
   if (carX1 < canvas.width + 100) {
       carX1 = carX1 + 5;
   }else {
     carX1 = -100;
     carSX1 = (Math.floor(Math.random() * 4)) * 60;
   }
-
-  ctx.drawImage(car,carSX2,0,60,35,carX2,carY2,carWidth,carHeight);
-
   if (carX2 < canvas.width + 100) {
       carX2 = carX2 + 5;
   }else {
     carX2 = -100;
     carSX2 = (Math.floor(Math.random() * 4)) * 60;
   }
+
+  if (carX3 > -100) {
+      carX3 = carX3 - 5;
+  }else {
+    carX3 = canvas.width + 100;
+    carSX3 = (Math.floor(Math.random() * 4)) * 60;
+  }
+
+  if (carX6 > -100) {
+      carX6 = carX6 - 5;
+  }else {
+    carX6 = canvas.width + 100;
+    carSX6 = (Math.floor(Math.random() * 4)) * 60;
+  }
+
+  if (carX4 < canvas.width + 100) {
+      carX4 = carX4 + 5;
+  }else {
+    carX4 = -100;
+    carSX4 = (Math.floor(Math.random() * 4)) * 60;
+  }
+  if (carX7 < canvas.width + 100) {
+      carX7 = carX2 + 5;
+  }else {
+    carX7 = -100;
+    carSX7 = (Math.floor(Math.random() * 4)) * 60;
+  }
+
+  if (carX5 > -100) {
+      carX5 = carX5 - 5;
+  }else {
+    carX5 = canvas.width + 100;
+    carSX5 = (Math.floor(Math.random() * 4)) * 60;
+  }
+
+  if (carX8 > -100) {
+      carX8 = carX8 - 5;
+  }else {
+    carX8 = canvas.width + 100;
+    carSX8 = (Math.floor(Math.random() * 4)) * 60;
+  }
 }
 
 function runOver(){
 
-  let carsX = [carX1, carX2];
-  let carsY = [carY1, carY2];
+  let carsX = [carX1, carX2, carX3, carX4, carX5, carX6, carX7, carX8];
+  let carsY = [carY1, carY2,carY3, carY4, carY5, carY6, carY7, carY8];
+
 
   for (let i = 0; i < carsX.length; i++) {
     if( carsX[i] <= x + width &&
