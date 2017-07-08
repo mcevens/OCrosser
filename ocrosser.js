@@ -71,6 +71,13 @@ let padY5 = 4;
 let padX6 = 520;
 let padY6 = 4;
 
+var pad1 = false;
+var pad2 = false;
+var pad3 = false;
+var pad4 = false;
+var pad5 = false;
+var pad6 = false;
+
 let templateWidth = 1142;
 let templateHeight = 635;
 let templateRow = 4;
@@ -349,9 +356,10 @@ function float(){
           x = x -2;
         }
     }
-    else if(y < 220){
-        y = 488;
-      }
+    else if (y < 220 && y > 44){
+		y = 444;
+
+		}
     }
 function drawCars(){
 
@@ -457,6 +465,71 @@ function runOver(){
 
 	for (let i = 0; i < padsX.length; i++){
 	ctx.fillRect(padsX[i], padsY[i], padWidth, padHeight);
+	}
+}
+
+function onPad(){
+	if (padX1 <= x + width &&
+		padX1 + padWidth >= x &&
+		padY1 + padHeight >= y &&
+		padY1 <= y + height) {
+			pad1 = true;
+			y = 444;
+			}
+
+	else if (padX2 <= x + width &&
+			padX2 + padWidth >= x &&
+			padY2 + padHeight >= y &&
+			padY2 <= y + height) {
+				pad2 = true;
+				y = 444;
+				}
+
+	else if (padX3 <= x + width &&
+			padX3 + padWidth >= x &&
+			padY3 + padHeight >= y &&
+			padY3 <= y + height) {
+				pad3 = true;
+				y = 444;
+				}
+
+	else if (padX4 <= x + width &&
+			padX4 + padWidth >= x &&
+			padY4 + padHeight >= y &&
+			padY4 <= y + height) {
+				pad4 = true;
+				y = 444;
+				}
+
+	else if (padX5 <= x + width &&
+			padX5 + padWidth >= x &&
+			padY5 + padHeight >= y &&
+			padY5 <= y + height) {
+				pad5 = true;
+				y = 444;
+				}
+
+	else if (padX6 <= x + width &&
+			padX6 + padWidth >= x &&
+			padY6 + padHeight >= y &&
+			padY6 <= y + height) {
+				pad6 = true;
+				y = 444;
+				}
+
+	else if (y < 48){
+		y = 444;
+
+		}
+
+	var pads = [pad1, pad2, pad3, pad4, pad5, pad6];
+	var padsX = [padX1, padX2, padX3, padX4, padX5, padX6];
+	var padsY = [padY1, padY2, padY3, padY4, padY5, padY6];
+
+	for (let i = 0; i < pads.length; i++){
+		if (pads[i] === true) {
+			ctx.drawImage(ocrosser, 0, 0, 40, 40, padsX[i], padsY[i], 30, 30);
+		}
 	}
 }
 
