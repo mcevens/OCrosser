@@ -200,11 +200,17 @@ function drawCars(){
 }
 
 function runOver(){
-  if (carX1 <= x + width &&
-    carX1 + carWidth >= x &&
-    carY1 + carHeight >= y &&
-    carY1 <= y + height) {
-      y = 488;
+
+  let carsX = [carX1, carX2];
+  let carsY = [carY1, carY2];
+
+  for (let i = 0; i < carsX.length; i++) {
+    if( carsX[i] <= x + width &&
+      carsX[i] + carWidth >= x &&
+      carsY[i] + carHeight >= y &&
+      carsY[i] <= y + height){
+        y = 488;
+      }
   }
  }
 
