@@ -34,6 +34,14 @@ let carX8 = 160;
 let carSX8 = 0;
 let carY8 = 265;
 
+let logX1 = 300;
+let logY1 = 180;
+let logWidth = 120;
+let logHeight = 30;
+
+let logX2 = 40;
+let logY2 = 180;
+
 let templateWidth = 1142;
 let templateHeight = 635;
 let templateRow = 4;
@@ -62,7 +70,7 @@ let sheight = actorHeight;
 let x = 50; //Image position in canvas
 let y = 444; //Image Position in canvas
 let width = 50;
-let height = 50;
+let height = 30;
 
 let rightPressed = false;
 let leftPressed = false;
@@ -191,12 +199,43 @@ function moveOCrosser() {
 function draw(){
   ctx.clearRect(0,0, canvas.width, canvas.height);
   drawBackground();
+  drawLogs();
+  moveLogs();
   drawOCrosser();
   moveOCrosser();
   drawCars();
-  runOver();
   moveCars();
+  runOver();
+  float();
   requestAnimationFrame(draw);
+}
+
+function moveLogs(){
+  if (logX1 < canvas.width + 100){
+    logX1 = logX1 +2;
+  }else {
+    logX1 = -100;
+  }
+  if (logX2 < canvas.width + 100){
+    logX2 = logX2 +2;
+  }else {
+    logX2 = -100;
+  }
+}
+
+function float(){
+  if(y < 220){
+    if (logX1 <= x + width &&
+      logX1 + logWidth >= x &&
+      logY1 + logHeight >= y &&
+      logY1 <= y + height){
+        if(x < canvas.width - 30){
+          x = x +2;
+        }
+      }else{
+        y = 488;
+      }
+  }
 }
 
 function drawCars(){
@@ -283,5 +322,18 @@ function runOver(){
       }
   }
  }
+
+
+ function drawLogs(){
+   ctx.fillStyle = "tan";
+   var logsX = [logX1, logX2];
+   var logsY = [logY1, logY2];
+
+   for (let i = 0; i < logsX.length; i++) {
+     ctx.fillRect(logsX[i], logsY[i], logWidth, logHeight);
+   }
+
+ }
+
 
 draw();
