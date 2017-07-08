@@ -10,7 +10,9 @@ let carSX1 = 0;
 let carY1 = 400;
 let carWidth = 60;
 let carHeight = 35;
-
+let carX2 = 500;
+let carSX2 = 60;
+let carY2 = 400;
 
 let templateWidth = 1142;
 let templateHeight = 635;
@@ -172,6 +174,8 @@ function draw(){
   drawOCrosser();
   moveOCrosser();
   drawCars();
+  runOver();
+
   requestAnimationFrame(draw);
 }
 
@@ -184,6 +188,24 @@ function drawCars(){
     carX1 = -100;
     carSX1 = (Math.floor(Math.random() * 4)) * 60;
   }
+
+  ctx.drawImage(car,carSX2,0,60,35,carX2,carY2,carWidth,carHeight);
+
+  if (carX2 < canvas.width + 100) {
+      carX2 = carX2 + 5;
+  }else {
+    carX2 = -100;
+    carSX2 = (Math.floor(Math.random() * 4)) * 60;
+  }
 }
+
+function runOver(){
+  if (carX1 <= x + width &&
+    carX1 + carWidth >= x &&
+    carY1 + carHeight >= y &&
+    carY1 <= y + height) {
+      y = 488;
+  }
+ }
 
 draw();
