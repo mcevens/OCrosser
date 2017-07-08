@@ -51,6 +51,25 @@ let logX5 = 480;
 let logY5 = 92;
 let logX6 = 60;
 let logY6 = 92;
+let logX7 = 120;
+let logY7 = 48;
+let logX8 = 500;
+let logY8 = 48;
+
+let padWidth = 30;
+let padHeight = 30;
+let padX1 = 20;
+let padY1 = 4;
+let padX2 = 120;
+let padY2 = 4;
+let padX3 = 220;
+let padY3 = 4;
+let padX4 = 320;
+let padY4 = 4;
+let padX5 = 420;
+let padY5 = 4;
+let padX6 = 520;
+let padY6 = 4;
 
 let templateWidth = 1142;
 let templateHeight = 635;
@@ -211,6 +230,7 @@ function draw(){
   drawBackground();
   drawLogs();
   moveLogs();
+  drawPads();
   drawOCrosser();
   moveOCrosser();
   drawCars();
@@ -250,6 +270,16 @@ function moveLogs(){
     logX6 = logX6 +3;
   }else {
     logX6 = -100;
+  }
+  if (logX7 > 0 - logWidth){
+    logX7 = logX7 - 2;
+  }else {
+    logX7 = canvas.width + 100;
+  }
+  if (logX8 > 0 - logWidth){
+    logX8 = logX8 - 2;
+  }else {
+    logX8 = canvas.width + 100;
   }
 }
 
@@ -303,7 +333,22 @@ function float(){
           x = x + 3;
         }
     }
-
+    else if(logX7 <= x + width &&
+      logX7 + logWidth >= x &&
+      logY7 + logHeight >= y &&
+      logY7 <= y + height){
+        if(x > 0 ){
+          x = x -2;
+        }
+    }
+    else if(logX8 <= x + width &&
+      logX8 + logWidth >= x &&
+      logY8 + logHeight >= y &&
+      logY8 <= y + height){
+        if(x > 0 ){
+          x = x -2;
+        }
+    }
     else if(y < 220){
         y = 488;
       }
@@ -396,14 +441,24 @@ function runOver(){
 
  function drawLogs(){
    ctx.fillStyle = "tan";
-   var logsX = [logX1, logX2, logX3, logX4, logX5, logX6];
-   var logsY = [logY1, logY2, logY3, logY4, logY5, logY6];
+   let logsX = [logX1, logX2, logX3, logX4, logX5, logX6, logX7, logX8];
+   let logsY = [logY1, logY2, logY3, logY4, logY5, logY6, logY7, logY8];
 
    for (let i = 0; i < logsX.length; i++) {
      ctx.fillRect(logsX[i], logsY[i], logWidth, logHeight);
    }
 
  }
+
+ function drawPads(){
+	ctx.fillStyle = "seagreen";
+	let padsX = [padX1, padX2, padX3, padX4, padX5, padX6];
+	let padsY = [padY1, padY2, padY3, padY4, padY5, padY6];
+
+	for (let i = 0; i < padsX.length; i++){
+	ctx.fillRect(padsX[i], padsY[i], padWidth, padHeight);
+	}
+}
 
 
 draw();
