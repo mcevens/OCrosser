@@ -238,6 +238,7 @@ function draw(){
   drawLogs();
   moveLogs();
   drawPads();
+  onPad();
   drawOCrosser();
   moveOCrosser();
   drawCars();
@@ -474,7 +475,7 @@ function onPad(){
 		padY1 + padHeight >= y &&
 		padY1 <= y + height) {
 			pad1 = true;
-			y = 444;
+			y = 488;
 			}
 
 	else if (padX2 <= x + width &&
@@ -482,7 +483,7 @@ function onPad(){
 			padY2 + padHeight >= y &&
 			padY2 <= y + height) {
 				pad2 = true;
-				y = 444;
+				y = 488;
 				}
 
 	else if (padX3 <= x + width &&
@@ -490,7 +491,7 @@ function onPad(){
 			padY3 + padHeight >= y &&
 			padY3 <= y + height) {
 				pad3 = true;
-				y = 444;
+				y = 488;
 				}
 
 	else if (padX4 <= x + width &&
@@ -498,7 +499,7 @@ function onPad(){
 			padY4 + padHeight >= y &&
 			padY4 <= y + height) {
 				pad4 = true;
-				y = 444;
+				y = 488;
 				}
 
 	else if (padX5 <= x + width &&
@@ -506,7 +507,7 @@ function onPad(){
 			padY5 + padHeight >= y &&
 			padY5 <= y + height) {
 				pad5 = true;
-				y = 444;
+				y = 488;
 				}
 
 	else if (padX6 <= x + width &&
@@ -514,11 +515,11 @@ function onPad(){
 			padY6 + padHeight >= y &&
 			padY6 <= y + height) {
 				pad6 = true;
-				y = 444;
+				y = 488;
 				}
 
 	else if (y < 48){
-		y = 444;
+		y = 488;
 
 		}
 
