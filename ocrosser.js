@@ -71,14 +71,16 @@ let padY5 = 4;
 let padX6 = 520;
 let padY6 = 4;
 
-var pad1 = false;
-var pad2 = false;
-var pad3 = false;
-var pad4 = false;
-var pad5 = false;
-var pad6 = false;
-var lives = 3 ;
-var livesLost = 0;
+let pad1 = false;
+let pad2 = false;
+let pad3 = false;
+let pad4 = false;
+let pad5 = false;
+let pad6 = false;
+let lives = 3 ;
+let livesLost = 0;
+let play = true ;
+let victoryCondition = false;
 
 let templateWidth = 1142;
 let templateHeight = 635;
@@ -236,19 +238,29 @@ function moveOCrosser() {
 
 function draw(){
   ctx.clearRect(0,0, canvas.width, canvas.height);
-  drawLives();
-  drawBackground();
-  drawLogs();
-  moveLogs();
-  drawPads();
-  onPad();
-  drawOCrosser();
-  moveOCrosser();
-  drawCars();
-  moveCars();
-  runOver();
-  float();
-  requestAnimationFrame(draw);
+
+  if (victoryCondition === false ) {
+    gameOver();
+    drawLives();
+  }
+
+  if (play){
+    drawLives();
+    drawBackground();
+    drawLogs();
+    moveLogs();
+    drawPads();
+    onPad();
+    drawOCrosser();
+    moveOCrosser();
+    drawCars();
+    moveCars();
+    runOver();
+    float();
+    requestAnimationFrame(draw);
+  }
+
+
 }
 
 function moveLogs(){
@@ -361,8 +373,8 @@ function float(){
         }
     }
     else if (y < 220 && y > 44){
-		y = 444;
-
+		y = 488;
+    livesLost ++ ;
 		}
     }
 
@@ -447,10 +459,11 @@ function runOver(){
       carsY[i] + carHeight >= y &&
       carsY[i] <= y + height){
         y = 488;
+        livesLost ++;
       }
-  }
- }
+    }
 
+ }
 
  function drawLogs(){
    ctx.fillStyle = "tan";
@@ -545,6 +558,26 @@ function drawLives(){
      ctx.fillText("LIVES: " + (lives - livesLost), (canvas.width/2)-78, 525 );
    }
 
+}
+
+function victory(){
+  if(pad1 && pad2 && pad3 && pad4 && pad5 && pad6){
+    ctx.fillStyle = "White";
+    ctx.font = "30px Arial";
+    ctx.fillText("You won!", (canvas.width/2) -60, 525);
+    victoryCondition = true;
+  }
+}
+
+function gameOver(){
+  if(lives -livesLost === 0){
+    play = false;
+    ctx.fillStyle = "white";
+    ctx.font = "72px Arial";
+    ctx.fillText("GAME OVER", 0, 100);
+    ctx.font = "28 px Arial";
+    ctx.fillText("refresh to try again!", 50, 150);
+  }
 }
 
 
