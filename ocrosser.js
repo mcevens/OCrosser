@@ -77,6 +77,8 @@ var pad3 = false;
 var pad4 = false;
 var pad5 = false;
 var pad6 = false;
+var lives = 3 ;
+var livesLost = 0;
 
 let templateWidth = 1142;
 let templateHeight = 635;
@@ -234,6 +236,7 @@ function moveOCrosser() {
 
 function draw(){
   ctx.clearRect(0,0, canvas.width, canvas.height);
+  drawLives();
   drawBackground();
   drawLogs();
   moveLogs();
@@ -362,6 +365,7 @@ function float(){
 
 		}
     }
+
 function drawCars(){
 
   let carsSX = [carSX1, carSX2, carSX3, carSX4, carSX5,carSX6, carSX7, carSX8];
@@ -532,6 +536,15 @@ function onPad(){
 			ctx.drawImage(ocrosser, 0, 0, 40, 40, padsX[i], padsY[i], 30, 30);
 		}
 	}
+}
+
+function drawLives(){
+   if (lives - livesLost!== 0 ){
+     ctx.fillStyle = "white";
+     ctx.font = "30px Arial";
+     ctx.fillText("LIVES: " + (lives - livesLost), (canvas.width/2)-78, 525 );
+   }
+
 }
 
 
